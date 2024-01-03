@@ -31,12 +31,15 @@ class MarkovMachine {
   getChains(words) {
 
     const chainObj = {};
+    // TODO: can call this 'chains', don't add data type to naming conv
 
     for (let i = 0; i < words.length; i++) {
+      // TODO: use 'this.words' instead of words.length
       if (!(words[i] in chainObj)) {
         if (words[i+1] === undefined) {
           chainObj[words[i]] = [null];
           continue;
+  // TODO: can check curr word and next word before going through conditionals
         }
         chainObj[words[i]] = [words[i+1]];
       }
@@ -81,12 +84,14 @@ class MarkovMachine {
       // NOTE: removing + 1 in randIdx resolved undefined bug issue
       const randIdx = Math.floor(Math.random() * (nextWords.length));
       const pickedWord = nextWords[randIdx];
+      // TODO: ^ randomizer might be better as a helper function instead here
 
       if (pickedWord === null) {
         return text;
       }
 
       text += " " + pickedWord;
+      // TODO: ^ consider initializing an empty array first and then join at end
 
       word = pickedWord;
     }
